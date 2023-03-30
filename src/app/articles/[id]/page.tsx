@@ -1,4 +1,6 @@
-async function getData(id: number) {
+import { Article } from '@prisma/client';
+
+async function getData(id: string): Promise<Article> {
   const res = await fetch(`http://localhost:3000/api/articles/${id}`);
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -8,7 +10,7 @@ async function getData(id: number) {
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const article = await getData(Number(params.id));
+  const article = await getData(params.id);
 
   return (
     <main>

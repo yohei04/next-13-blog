@@ -1,4 +1,6 @@
-async function getData() {
+import { Article } from '@prisma/client';
+
+async function getData(): Promise<Article[]> {
   const res = await fetch('http://localhost:3000/api/articles');
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
@@ -26,7 +28,7 @@ export default async function Home() {
   return (
     <main>
       <ul>
-        {articles.map((article: any) => (
+        {articles.map((article) => (
           <li key={article.id}>
             <div>{article.id}</div>
             <div>{article.title}</div>
