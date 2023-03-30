@@ -1,7 +1,7 @@
 import { Article } from '@prisma/client';
 
 async function getData(): Promise<Article[]> {
-  const res = await fetch('http://localhost:3000/api/articles');
+  const res = await fetch('https://next-13-blog-five.vercel.app/api/articles');
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 

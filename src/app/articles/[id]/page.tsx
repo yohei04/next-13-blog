@@ -1,7 +1,7 @@
 import { Article } from '@prisma/client';
 
 async function getData(id: string): Promise<Article> {
-  const res = await fetch(`http://localhost:3000/api/articles/${id}`);
+  const res = await fetch(`https://next-13-blog-five.vercel.app/api/articles/${id}`);
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
