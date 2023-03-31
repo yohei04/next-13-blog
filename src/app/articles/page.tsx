@@ -20,13 +20,13 @@ async function getData(): Promise<Article[]> {
 }
 
 export default async function Page() {
-  const articles = await prisma.article.findMany({
-    where: {
-      published: false,
-    },
-  });
+  // const articles = await prisma.article.findMany({
+  //   where: {
+  //     published: false,
+  //   },
+  // });
 
-  // const articles = await getData();
+  const articles = await getData();
 
   console.log({ articles });
 
