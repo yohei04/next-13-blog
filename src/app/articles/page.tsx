@@ -1,9 +1,14 @@
+import { baseUrl } from '@/lib/baseUrl';
+import prisma from '@/lib/prisma';
 import { Article } from '@prisma/client';
 
 async function getData(): Promise<Article[]> {
-  const res = await fetch('https://next-13-blog-five.vercel.app/api/articles');
+  // const res = await fetch('https://next-13-blog-git-main-yohei04.vercel.app/api/articles');
+  const res = await fetch(`${baseUrl}/api/articles`);
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
+
+  console.log({ baseUrl });
 
   // Recommendation: handle errors
   if (!res.ok) {
@@ -14,14 +19,14 @@ async function getData(): Promise<Article[]> {
   return res.json();
 }
 
-export default async function Home() {
-  // const articles = await prisma.article.findMany({
-  //   where: {
-  //     published: false,
-  //   },
-  // });
+export default async function Page() {
+  const articles = await prisma.article.findMany({
+    where: {
+      published: false,
+    },
+  });
 
-  const articles = await getData();
+  // const articles = await getData();
 
   console.log({ articles });
 
