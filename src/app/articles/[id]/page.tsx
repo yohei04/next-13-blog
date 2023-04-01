@@ -17,16 +17,14 @@ export default async function Page({ params }: { params: { id: string } }) {
   const article = await getData(params.id);
 
   return (
-    <div>
-      <main>
-        <article key={article.id}>
-          <div>{article.id}</div>
-          <div>{article.title}</div>
-          <div>{article.body}</div>
-          <div>{article.updatedAt.toString()}</div>
-        </article>
-      </main>
-      <Link href={'/articles'}>記事一覧へ</Link>
-    </div>
+    <section>
+      <h1>記事詳細</h1>
+      <article key={article.id}>
+        <div>{article.id}</div>
+        <div>{article.title}</div>
+        <div>{article.body}</div>
+        <div>{article.updatedAt.toString()}</div>
+      </article>
+    </section>
   );
 }
