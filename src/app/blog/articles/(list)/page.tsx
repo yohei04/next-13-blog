@@ -1,5 +1,6 @@
 import { ArticleWithTags } from '@/app/api/blog/articles/route';
 import { baseUrl } from '@/lib/baseUrl';
+import prisma from '@/lib/prisma';
 
 import { ArticleList } from './components/ArticleList/ArticleList';
 
@@ -20,13 +21,19 @@ async function getData(): Promise<ArticleWithTags[]> {
 }
 
 export default async function Page() {
-  // const articles = await prisma.article.findMany({
-  //   where: {
-  //     published: false,
-  //   },
-  // });
+  const article = await prisma.article.findMany();
+  const articleTag = await prisma.article.findMany({
+    include: {
+      tags: true,
+    },
+  });
+  const user = await prisma.user.findMany();
+  const like = await prisma.like.findMany();
+  const tag = await prisma.tag.findMany();
 
   const articles = await getData();
+
+  console.log({ articles, article, user, like, tag, articleTag });
 
   return (
     <section>
