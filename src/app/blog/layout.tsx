@@ -13,10 +13,10 @@ type Props = {
 
 const SIDE_MENUS = [
   { name: 'ホーム', path: '/' },
-  { name: '記事一覧', path: '/articles' },
-  { name: 'お気に入り', path: '/articles/likes' },
-  { name: 'プロフィール', path: '/articles/profile' },
-  // { name: '設定', path: '/articles/setting' },
+  { name: '記事一覧', path: '/blog' },
+  { name: 'お気に入り', path: '/blog/likes' },
+  { name: 'プロフィール', path: '/blog/profile' },
+  // { name: '設定', path: '/blog/setting' },
 ] as const;
 
 export default function Layout({ children }: Props) {
