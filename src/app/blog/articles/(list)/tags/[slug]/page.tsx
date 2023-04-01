@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { ArticleWithTags } from '@/app/api/blog/articles/route';
 import { baseUrl } from '@/lib/baseUrl';
 
@@ -16,15 +14,15 @@ async function getData(): Promise<ArticleWithTags[]> {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  // const articles = await getData();
-  // const filteredArticles = articles.filter((article) =>
-  //   article.tags.some((tag) => tag.name === params.slug)
-  // );
+  const articles = await getData();
+  const filteredArticles = articles.filter((article) =>
+    article.tags.some((tag) => tag.name === params.slug)
+  );
 
   return (
     <section>
       <h1>該当タグの記事一覧</h1>
-      <ArticleList articles={[]} />
+      <ArticleList articles={filteredArticles} />
     </section>
   );
 }

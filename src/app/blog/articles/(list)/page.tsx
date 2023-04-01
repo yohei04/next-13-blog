@@ -26,12 +26,12 @@ export default async function Page() {
   //   },
   // });
 
-  // const articles = await getData();
+  const articles = await getData();
 
   return (
     <section>
       <h1>記事一覧</h1>
-      <ArticleList articles={[]} />
+      <ArticleList articles={articles} />
     </section>
   );
 }
