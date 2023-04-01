@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { baseUrl } from '@/lib/baseUrl';
 import { Article } from '@prisma/client';
 
@@ -15,13 +17,16 @@ export default async function Page({ params }: { params: { id: string } }) {
   const article = await getData(params.id);
 
   return (
-    <main>
-      <div key={article.id}>
-        <div>{article.id}</div>
-        <div>{article.title}</div>
-        <div>{article.body}</div>
-        <div>{article.updatedAt.toString()}</div>
-      </div>
-    </main>
+    <div>
+      <main>
+        <article key={article.id}>
+          <div>{article.id}</div>
+          <div>{article.title}</div>
+          <div>{article.body}</div>
+          <div>{article.updatedAt.toString()}</div>
+        </article>
+      </main>
+      <Link href={'/articles'}>記事一覧へ</Link>
+    </div>
   );
 }

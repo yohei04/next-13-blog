@@ -1,5 +1,9 @@
+import Link from 'next/link';
+
 import { baseUrl } from '@/lib/baseUrl';
 import { Article } from '@prisma/client';
+
+import { ArticleList } from './components/ArticleList/ArticleList';
 
 async function getData(): Promise<Article[]> {
   const res = await fetch(`${baseUrl}/api/articles`);
@@ -27,17 +31,12 @@ export default async function Page() {
   const articles = await getData();
 
   return (
-    <main>
-      <ul>
-        {articles.map((article) => (
-          <li key={article.id}>
-            <div>{article.id}</div>
-            <div>{article.title}</div>
-            <div>{article.body}</div>
-            <div>{article.updatedAt.toString()}</div>
-          </li>
-        ))}
-      </ul>
-    </main>
+    <div>
+      <section>
+        <h1>記事一覧</h1>
+        <ArticleList articles={articles} />
+      </section>
+      <Link href={'/'}>トップへ</Link>
+    </div>
   );
 }
