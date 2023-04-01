@@ -16,15 +16,15 @@ async function getData(): Promise<ArticleWithTags[]> {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const articles = await getData();
-  const filteredArticles = articles.filter((article) =>
-    article.tags.some((tag) => tag.name === params.slug)
-  );
+  // const articles = await getData();
+  // const filteredArticles = articles.filter((article) =>
+  //   article.tags.some((tag) => tag.name === params.slug)
+  // );
 
   return (
     <section>
       <h1>該当タグの記事一覧</h1>
-      <ArticleList articles={filteredArticles} />
+      <ArticleList articles={[]} />
     </section>
   );
 }

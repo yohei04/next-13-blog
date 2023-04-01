@@ -17,13 +17,13 @@ async function getData(): Promise<ArticleWithTags[]> {
 }
 
 export default async function Page() {
-  const articles = await getData();
+  // const articles = await getData();
 
   return (
     <div>
       <section>
         <h1>お気に入り記事一覧</h1>
-        <ArticleList articles={articles} />
+        <ArticleList articles={[]} />
       </section>
     </div>
   );

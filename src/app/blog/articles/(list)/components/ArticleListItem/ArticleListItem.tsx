@@ -15,7 +15,7 @@ export const ArticleListItem: FC<Props> = ({ article }) => {
     <Link className={styles.root} href={`/blog/articles/${article.id}`}>
       <div>{article.id}</div>
       <div>{article.title}</div>
-      <TagList tags={article.tags} />
+      {/* <TagList tags={article.tags} /> */}
     </Link>
   );
 };
