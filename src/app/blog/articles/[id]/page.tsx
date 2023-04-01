@@ -4,7 +4,7 @@ import { baseUrl } from '@/lib/baseUrl';
 import { Article } from '@prisma/client';
 
 async function getData(id: string): Promise<Article> {
-  const res = await fetch(`${baseUrl}/api/articles/${id}`);
+  const res = await fetch(`${baseUrl}/api/blog/articles/${id}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');

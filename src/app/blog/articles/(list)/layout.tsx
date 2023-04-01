@@ -7,7 +7,7 @@ type Props = {
 };
 
 const HEADER_MENUS = [
-  { name: 'すべて', path: '/blog' },
+  { name: 'すべて', path: '/blog/articles' },
   // { name: 'Tech', path: '/tags/tech/articles' },
   // { name: 'Idea', path: '/tags/tech/articles' },
 ] as const;
