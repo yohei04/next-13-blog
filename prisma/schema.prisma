@@ -11,6 +11,18 @@ datasource db {
   relationMode = "prisma"
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+  comments Comment[]
+  Like     Like[]
+}
+
 model Article {
   id          Int      @id @default(autoincrement())
   title       String
@@ -19,4 +31,50 @@ model Article {
   published   Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  userId   Int
+  user     User      @relation(fields: [userId], references: [id])
+  comments Comment[]
+  tags     Tag[]
+  Like     Like[]
+
+  @@index([userId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+  articleId Int
+  article   Article @relation(fields: [articleId], references: [id])
+
+  @@index([userId])
+  @@index([articleId])
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+  articleId Int
+  article   Article @relation(fields: [articleId], references: [id])
+
+  @@index([userId])
+  @@index([articleId])
 }
