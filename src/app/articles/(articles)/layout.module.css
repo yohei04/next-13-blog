@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.header__list {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.content {
+  padding: 1rem;
+  border: 1px teal solid;
+}
