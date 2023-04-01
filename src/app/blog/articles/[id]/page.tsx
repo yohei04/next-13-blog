@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import { baseUrl } from '@/lib/baseUrl';
 import { Article } from '@prisma/client';
 

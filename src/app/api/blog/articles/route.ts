@@ -1,14 +1,21 @@
 import { NextResponse } from 'next/server';
 
 import prisma from '@/lib/prisma';
-import { Article } from '@prisma/client';
+import { Article, Tag } from '@prisma/client';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+export type ArticleWithTags = Article & {
+  tags: Tag[];
+};
 
 export async function GET(_req: NextApiRequest) {
   const articles = await prisma.article.findMany({
     where: {
-      published: false,
+      published: true,
+    },
+    include: {
+      tags: true,
     },
   });
 

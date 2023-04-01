@@ -1,12 +1,13 @@
 import { FC } from 'react';
 
+import { ArticleWithTags } from '@/app/api/blog/articles/route';
 import { Article } from '@prisma/client';
 
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 import styles from './ArticleList.module.css';
 
 type Props = {
-  articles: Article[];
+  articles: ArticleWithTags[];
 };
 
 export const ArticleList: FC<Props> = ({ articles }) => {

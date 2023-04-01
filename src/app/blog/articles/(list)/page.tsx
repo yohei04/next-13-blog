@@ -1,11 +1,9 @@
-import Link from 'next/link';
-
+import { ArticleWithTags } from '@/app/api/blog/articles/route';
 import { baseUrl } from '@/lib/baseUrl';
-import { Article } from '@prisma/client';
 
 import { ArticleList } from './components/ArticleList/ArticleList';
 
-async function getData(): Promise<Article[]> {
+async function getData(): Promise<ArticleWithTags[]> {
   const res = await fetch(`${baseUrl}/api/blog/articles`);
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.

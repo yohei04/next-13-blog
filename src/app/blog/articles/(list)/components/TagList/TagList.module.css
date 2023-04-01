@@ -1,0 +1,9 @@
+.root {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.list {
+  display: flex;
+  gap: 0.3rem;
+}

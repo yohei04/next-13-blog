@@ -8,8 +8,8 @@ type Props = {
 
 const HEADER_MENUS = [
   { name: 'すべて', path: '/blog/articles' },
-  // { name: 'Tech', path: '/tags/tech/articles' },
-  // { name: 'Idea', path: '/tags/tech/articles' },
+  { name: '音楽', path: '/blog/articles/tags/music' },
+  { name: '旅行', path: '/blog/articles/tags/travel' },
 ] as const;
 
 export default function Layout({ children }: Props) {
