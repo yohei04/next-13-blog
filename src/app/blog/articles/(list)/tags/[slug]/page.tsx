@@ -4,7 +4,7 @@ import { baseUrl } from '@/lib/baseUrl';
 import { ArticleList } from '../../components/ArticleList/ArticleList';
 
 async function getData(): Promise<ArticleWithTags[]> {
-  const res = await fetch(`${baseUrl}/api/blog/articles`, { next: { revalidate: 10 } });
+  const res = await fetch(`${baseUrl}/api/blog/articles`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
