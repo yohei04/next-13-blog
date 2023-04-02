@@ -4,7 +4,7 @@ import { baseUrl } from '@/lib/baseUrl';
 import { ArticleList } from './components/ArticleList/ArticleList';
 
 async function getData(): Promise<ArticleWithTags[]> {
-  const res = await fetch(`${baseUrl}/api/blog/articles`, { cache: 'no-store' });
+  const res = await fetch(`${baseUrl}/api/blog/articles`);
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
 
