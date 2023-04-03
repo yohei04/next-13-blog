@@ -5,9 +5,9 @@ import prisma from '@/lib/prisma';
 import type { NextApiRequest } from 'next';
 
 export async function GET(_req: NextApiRequest, { params }: { params: { id: string } }) {
-  const data = await prisma.article.findUnique({
+  const data = await prisma.comment.findMany({
     where: {
-      id: Number(params.id),
+      articleId: Number(params.id),
     },
   });
 
