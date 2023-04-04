@@ -1,31 +1,26 @@
+import { Suspense } from 'react';
+
 import { baseUrl } from '@/lib/baseUrl';
+import { sleep } from '@/utils/sleep';
 import { Article, Comment } from '@prisma/client';
 
+import { CommentList } from '../(list)/components/CommentList/CommentList';
+import { Spinner } from '../../../../components/Spinner';
+
 async function getArticle(id: string): Promise<Article> {
-  const res = await fetch(`${baseUrl}/api/blog/articles/${id}`);
+  const res = await fetch(`${baseUrl}/api/blog/articles/${id}`, { cache: 'no-store' });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
 
-  return res.json();
-}
-
-async function getComments(id: string): Promise<Comment[]> {
-  const res = await fetch(`${baseUrl}/api/blog/articles/${id}/comments`);
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
+  sleep(3000);
 
   return res.json();
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const articleData = getArticle(params.id);
-  const commentsData = getComments(params.id);
-
-  const [article, comments] = await Promise.all([articleData, commentsData]);
+  const article = await getArticle(params.id);
 
   return (
     <section>
@@ -39,15 +34,10 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
         <section>
           <h2>コメント一覧</h2>
-          <ul>
-            {comments.map((comment) => (
-              <li key={comment.id}>
-                <div>{comment.id}</div>
-                <div>{comment.content}</div>
-                <div>{comment.updatedAt.toString()}</div>
-              </li>
-            ))}
-          </ul>
+          <Suspense fallback={<Spinner />}>
+            {/* @ts-expect-error Async Server Component */}
+            <CommentList articleId={params.id} />
+          </Suspense>
         </section>
       </article>
     </section>
