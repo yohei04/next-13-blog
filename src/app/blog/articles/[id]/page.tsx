@@ -14,13 +14,28 @@ async function getArticle(id: string): Promise<Article> {
     throw new Error('Failed to fetch data');
   }
 
-  sleep(3000);
+  await sleep(2000);
+
+  return res.json();
+}
+
+async function getComments(id: string): Promise<Comment[]> {
+  const res = await fetch(`${baseUrl}/api/blog/articles/${id}/comments`);
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  await sleep(2500);
 
   return res.json();
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const article = await getArticle(params.id);
+  const articleData = getArticle(params.id);
+  const commentsData = getComments(params.id);
+
+  const article = await articleData;
 
   return (
     <section>
@@ -36,7 +51,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <h2>コメント一覧</h2>
           <Suspense fallback={<Spinner />}>
             {/* @ts-expect-error Async Server Component */}
-            <CommentList articleId={params.id} />
+            <CommentList promise={commentsData} />
           </Suspense>
         </section>
       </article>
