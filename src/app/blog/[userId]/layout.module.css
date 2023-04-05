@@ -1,0 +1,16 @@
+.contents {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.contents__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

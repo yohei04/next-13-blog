@@ -11,21 +11,24 @@ type Props = {
   children: React.ReactNode;
 };
 
-const SIDE_MENUS = [
-  { name: 'ホーム', path: '/' },
-  { name: '記事一覧', path: '/blog/articles' },
-  { name: 'お気に入り', path: '/blog/articles/likes' },
-  { name: 'プロフィール', path: '/blog/profile' },
-  // { name: '設定', path: '/blog/setting' },
-] as const;
+const getSideMenus = (userId: string) => {
+  return [
+    { name: 'ホーム', path: '/' },
+    { name: '記事一覧', path: '/blog/articles' },
+    { name: 'お気に入り', path: '/blog/articles/likes' },
+    { name: 'プロフィール', path: `/blog/${userId}` },
+    // { name: '設定', path: '/blog/setting' },
+  ] as const;
+};
 
 export default function Layout({ children }: Props) {
+  const sideMenu = getSideMenus('1');
   return (
     <div className={styles.root}>
       <aside className={styles.sidebar}>
         <nav>
           <ul>
-            {SIDE_MENUS.map((sideMenu) => (
+            {sideMenu.map((sideMenu) => (
               <li key={sideMenu.name} className={styles.sidebar__item}>
                 <Link href={sideMenu.path}>{sideMenu.name}</Link>
               </li>
