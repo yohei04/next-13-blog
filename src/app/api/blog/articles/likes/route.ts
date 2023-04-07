@@ -2,9 +2,7 @@ import { NextResponse } from 'next/server';
 
 import prisma from '@/lib/prisma';
 
-import type { NextApiRequest } from 'next';
-
-export async function GET(_req: NextApiRequest) {
+export async function GET(_req: Request) {
   const data = await prisma.article.findMany({
     where: {
       published: true,
