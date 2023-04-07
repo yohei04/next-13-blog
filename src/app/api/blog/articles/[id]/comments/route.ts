@@ -13,3 +13,17 @@ export async function GET(_req: NextApiRequest, { params }: { params: { id: stri
 
   return NextResponse.json(data);
 }
+
+export async function POST(req: Request, { params }: { params: { id: string } }) {
+  const { content } = await req.json();
+
+  const comment = await prisma.comment.create({
+    data: {
+      userId: 1,
+      articleId: Number(params.id),
+      content,
+    },
+  });
+
+  return NextResponse.json(comment);
+}
