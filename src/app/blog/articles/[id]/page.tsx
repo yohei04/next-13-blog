@@ -6,6 +6,7 @@ import { Article, Comment } from '@prisma/client';
 
 import { CommentList } from '../(list)/components/CommentList/CommentList';
 import { Spinner } from '../../../../components/Spinner';
+import { AddComment } from './components/AddComment';
 
 async function getArticle(id: string): Promise<Article> {
   const res = await fetch(`${baseUrl}/api/blog/articles/${id}`, { cache: 'no-store' });
@@ -48,6 +49,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div>{article.updatedAt.toString()}</div>
         </div>
         <section>
+          <AddComment articleId={params.id} />
           <h2>コメント一覧</h2>
           <Suspense fallback={<Spinner />}>
             {/* @ts-expect-error Async Server Component */}
