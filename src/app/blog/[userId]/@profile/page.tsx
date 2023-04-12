@@ -3,7 +3,7 @@ import { sleep } from '@/utils/sleep';
 import { User } from '@prisma/client';
 
 async function getUser(userId: string): Promise<User> {
-  const res = await fetch(`${baseUrl}/api/blog/${userId}`);
+  const res = await fetch(`${baseUrl}/api/blog/users/${userId}`);
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
@@ -21,13 +21,13 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const me = await getUser(params.userId);
+  // const me = await getUser(params.userId);
 
   return (
     <div>
-      <div>{me.id}</div>
-      <div>{me.name}</div>
-      <div>{me.email}</div>
+      {/* <div>{me.id}</div> */}
+      {/* <div>{me.name}</div> */}
+      {/* <div>{me.email}</div> */}
     </div>
   );
 }
