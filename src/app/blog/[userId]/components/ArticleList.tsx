@@ -29,11 +29,11 @@ export async function ArticleList({ userId }: Props) {
 
   return (
     <ul>
-      {articles.map((article) => (
+      {/* {articles.map((article) => (
         <li key={article.id}>
           <Link href={`/blog/${userId}/articles/${article.id}/comments`}>{article.title}</Link>
         </li>
-      ))}
+      ))} */}
     </ul>
   );
 }

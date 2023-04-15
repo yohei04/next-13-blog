@@ -9,7 +9,7 @@ async function getUser(userId: string): Promise<User> {
     throw new Error('Failed to fetch data');
   }
 
-  await sleep(2000);
+  await sleep(1000);
 
   return res.json();
 }
@@ -21,13 +21,13 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  // const me = await getUser(params.userId);
+  const me = await getUser(params.userId);
 
   return (
-    <div>
-      {/* <div>{me.id}</div> */}
-      {/* <div>{me.name}</div> */}
-      {/* <div>{me.email}</div> */}
-    </div>
+    <section>
+      <div>{me.id}</div>
+      <div>{me.name}</div>
+      <div>{me.email}</div>
+    </section>
   );
 }
