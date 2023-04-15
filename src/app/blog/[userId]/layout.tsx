@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
+import { OtherTab } from './components/OtherTab';
 import styles from './layout.module.css';
 
 type Props = {
@@ -37,16 +38,7 @@ export default async function Layout({
           <div>{comments}</div>
         </div>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <Link href={`/blog/${params.userId}/quotes`}>格言</Link>
-          </li>
-          <li>
-            <Link href={`/blog/${params.userId}/weather`}>天気</Link>
-          </li>
-        </ul>
-      </nav>
+      <OtherTab userId={params.userId} />
       <div>{others}</div>
     </div>
   );
