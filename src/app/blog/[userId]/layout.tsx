@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 import styles from './layout.module.css';
@@ -10,6 +11,7 @@ type Props = {
   articles: ReactNode;
   comments: ReactNode;
   quotes: ReactNode;
+  others: ReactNode;
   weather: ReactNode;
   children: ReactNode;
 };
@@ -21,9 +23,10 @@ export default async function Layout({
   comments,
   quotes,
   weather,
+  others,
   children,
 }: Props) {
-  const bottom = params.userId === '1' ? quotes : weather;
+  // const bottom = params.userId === '1' ? quotes : weather;
 
   return (
     <div>
@@ -36,7 +39,17 @@ export default async function Layout({
           <div>{comments}</div>
         </div>
       </div>
-      <div>{bottom}</div>
+      <nav>
+        <ul>
+          <li>
+            <Link href={`/blog/${params.userId}/quotes`}>格言</Link>
+          </li>
+          <li>
+            <Link href={`/blog/${params.userId}/weather`}>天気</Link>
+          </li>
+        </ul>
+      </nav>
+      <div>{others}</div>
     </div>
   );
 }
