@@ -21,8 +21,6 @@ export default async function Layout({
   profile,
   articles,
   comments,
-  quotes,
-  weather,
   others,
   children,
 }: Props) {
@@ -31,7 +29,7 @@ export default async function Layout({
   return (
     <div>
       <h1>プロフィール</h1>
-      {children}
+      {/* {children} */}
       <div className={styles.contents}>
         <div>{profile}</div>
         <div className={styles.contents__bottom}>

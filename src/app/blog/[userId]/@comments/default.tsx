@@ -20,7 +20,7 @@ type Props = {
   };
 };
 
-export default async function Page({ params }: Props) {
+export default async function Default({ params }: Props) {
   const comments = await getData(params.userId);
 
   return (
