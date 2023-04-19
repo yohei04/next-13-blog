@@ -8,6 +8,7 @@ import styles from './OtherTab.module.css';
 
 const TABS = [
   { name: '格言', path: 'quotes' },
+  { name: 'Bucket List', path: 'bucketlist' },
   { name: '天気', path: 'weather' },
 ] as const;
 
@@ -21,13 +22,14 @@ export const OtherTab: FC<Props> = ({ userId }) => {
   return (
     <div role="tablist" className={styles.root}>
       {TABS.map((tab) => {
-        const isActive = pathname.includes(tab.path);
+        const isSelected =
+          pathname.includes(tab.path) || (pathname === `/blog/${userId}` && tab.path === 'quotes');
         return (
           <Link
             key={tab.name}
             href={`/blog/${userId}/${tab.path}`}
             role="tab"
-            aria-selected={isActive}
+            aria-selected={isSelected}
             className={styles.tab}
           >
             {tab.name}
