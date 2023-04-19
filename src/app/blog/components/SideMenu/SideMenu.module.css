@@ -1,0 +1,15 @@
+.root {
+  padding: 1rem;
+  border: 1px teal solid;
+}
+
+.item {
+  display: inline-block;
+  padding: 0.2rem;
+}
+
+.item[aria-selected='true'] {
+  color: teal;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

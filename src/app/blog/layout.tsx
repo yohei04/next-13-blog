@@ -1,5 +1,4 @@
-import Link from 'next/link';
-
+import { SideMenu } from './components/SideMenu/SideMenu';
 import styles from './layout.module.css';
 
 export const metadata = {
@@ -11,31 +10,10 @@ type Props = {
   children: React.ReactNode;
 };
 
-const getSideMenus = (userId: string) => {
-  return [
-    { name: 'ホーム', path: '/' },
-    { name: '記事一覧', path: '/blog/articles' },
-    { name: 'お気に入り', path: '/blog/articles/likes' },
-    { name: 'プロフィール', path: `/blog/${userId}` },
-    // { name: '設定', path: '/blog/setting' },
-  ] as const;
-};
-
 export default function Layout({ children }: Props) {
-  const sideMenu = getSideMenus('1');
   return (
     <div className={styles.root}>
-      <aside className={styles.sidebar}>
-        <nav>
-          <ul>
-            {sideMenu.map((sideMenu) => (
-              <li key={sideMenu.name} className={styles.sidebar__item}>
-                <Link href={sideMenu.path}>{sideMenu.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
+      <SideMenu />
       <main className={styles.main}>{children}</main>
     </div>
   );
