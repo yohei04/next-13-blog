@@ -13,6 +13,7 @@ const getSideMenus = (userId: string) => {
     { name: '記事一覧', path: '/blog/articles' },
     { name: 'お気に入り', path: '/blog/articles/likes' },
     { name: 'プロフィール', path: `/blog/${userId}` },
+    { name: 'その他', path: `/blog/others` },
     // { name: '設定', path: '/blog/setting' },
   ] as const;
 };

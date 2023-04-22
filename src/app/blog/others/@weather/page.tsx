@@ -23,7 +23,7 @@ async function getData(): Promise<Weather> {
     throw new Error('Failed to fetch data');
   }
 
-  await sleep(1000);
+  await sleep(1500);
 
   return res.json().then((data) => data.data[0]);
 }

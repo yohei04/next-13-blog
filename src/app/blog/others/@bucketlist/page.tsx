@@ -15,7 +15,7 @@ async function getData(): Promise<TBucketlist> {
     throw new Error('Failed to fetch data');
   }
 
-  await sleep(1000);
+  await sleep(2000);
 
   return res.json();
 }
