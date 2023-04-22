@@ -1,7 +1,7 @@
 export default function Page() {
   return (
-    <main>
-      <div>プロフィールのトップページ</div>
-    </main>
+    <section>
+      <h2>ここにコメント一覧がくる</h2>
+    </section>
   );
 }
