@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
+
+import { Spinner } from '@/components/Spinner';
 
 import { ArticleList } from './components/ArticleList';
-import { OtherTab } from './components/OtherTab';
 import { Profile } from './components/Profile';
 import styles from './layout.module.css';
 
@@ -18,11 +18,16 @@ export default async function Layout({ params, children }: Props) {
     <div>
       <h1>プロフィール</h1>
       <div className={styles.contents}>
-        {/* @ts-expect-error Async Server Component */}
-        <Profile userId={params.userId} />
-        <div className={styles.contents__bottom}>
+        <Suspense fallback={<Spinner />}>
           {/* @ts-expect-error Async Server Component */}
-          <ArticleList userId={params.userId} />
+          <Profile userId={params.userId} />
+        </Suspense>
+
+        <div className={styles.contents__bottom}>
+          <Suspense fallback={<Spinner />}>
+            {/* @ts-expect-error Async Server Component */}
+            <ArticleList userId={params.userId} />
+          </Suspense>
           {children}
         </div>
       </div>
