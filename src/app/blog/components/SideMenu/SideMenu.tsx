@@ -31,7 +31,9 @@ export const SideMenu: FC<Props> = () => {
       <nav>
         <ul>
           {sideMenus.map((sideMenu) => {
-            const isSelected = pathname === sideMenu.path;
+            const isSelected =
+              pathname === sideMenu.path ||
+              (sideMenu.path === `/blog/${userId}` && pathname.includes(`/blog/${userId}`));
 
             return (
               <li key={sideMenu.name}>
