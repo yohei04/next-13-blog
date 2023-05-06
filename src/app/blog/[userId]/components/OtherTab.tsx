@@ -27,7 +27,7 @@ export const OtherTab: FC<Props> = ({ userId }) => {
         return (
           <Link
             key={tab.name}
-            href={`/blog/${userId}/${tab.path}`}
+            href={`/blog`}
             role="tab"
             aria-selected={isSelected}
             className={styles.tab}
